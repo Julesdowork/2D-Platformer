@@ -17,12 +17,10 @@ public class Tiling : MonoBehaviour
 
     float spriteWidth = 0;              // width of our element
     Camera cam;
-    //Transform myTransform;
 
     private void Awake()
     {
         cam = Camera.main;
-        //myTransform = transform;
     }
 
     void Start()
