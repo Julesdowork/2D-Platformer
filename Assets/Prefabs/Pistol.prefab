@@ -86,6 +86,9 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 1
+  bulletTrailPrefab: {fileID: 4616406058405376, guid: 7fd3ba1378fcdd640844ee48d008ca3a,
+    type: 2}
+  effectSpawnRate: 10
 --- !u!212 &212531409716904352
 SpriteRenderer:
   m_ObjectHideFlags: 1

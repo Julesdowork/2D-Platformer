@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour {
@@ -7,9 +6,12 @@ public class Weapon : MonoBehaviour {
     public float fireRate = 0;
     public float damage = 10f;
     public LayerMask hitLayer;
+    public Transform bulletTrailPrefab;
+    public float effectSpawnRate = 10f;
 
     float timeToFire = 0;
     Transform firePoint;
+    float timeToSpawnEffect = 0;
 
     void Awake()
     {
@@ -44,11 +46,21 @@ public class Weapon : MonoBehaviour {
             Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         Vector2 firePointPos = new Vector2(firePoint.position.x, firePoint.position.y);
         RaycastHit2D hit = Physics2D.Raycast(firePointPos, mousePos - firePointPos, 100f, hitLayer);
-        Debug.DrawLine(firePointPos, (mousePos - firePointPos) * 100f, Color.cyan);
+        if (Time.time >= timeToSpawnEffect)
+        {
+            Effect();
+            timeToSpawnEffect = Time.time + 1f / effectSpawnRate;
+        }
+        //Debug.DrawLine(firePointPos, (mousePos - firePointPos) * 100f, Color.cyan);
         if (hit.collider != null)
         {
-            Debug.DrawLine(firePointPos, hit.point, Color.red);
-            Debug.Log("Fired at " + hit.collider.name + " and did " + damage + " damage.");
+            //Debug.DrawLine(firePointPos, hit.point, Color.red);
+            //Debug.Log("Fired at " + hit.collider.name + " and did " + damage + " damage.");
         }
+    }
+
+    void Effect()
+    {
+        Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
     }
 }
