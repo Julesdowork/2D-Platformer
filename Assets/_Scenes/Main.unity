@@ -168,6 +168,12 @@ Prefab:
       propertyPath: effectSpawnRate
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114815958330215608, guid: 9325f58f8db2b8f4b8cddd4e1b1e63fd,
+        type: 2}
+      propertyPath: muzzleFlashPrefab
+      value: 
+      objectReference: {fileID: 4592585635261528, guid: 9dcbf02e2323d53459041389c8ce07c9,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9325f58f8db2b8f4b8cddd4e1b1e63fd, type: 2}
   m_IsPrefabAsset: 0
