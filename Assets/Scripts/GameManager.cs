@@ -7,12 +7,17 @@ public class GameManager : MonoBehaviour {
 
     public Transform playerPrefab;
     public Transform spawnPoint;
-    public int spawnDelay = 2;
+    public float spawnDelay = 3.5f;
+    public Transform spawnPrefab;
+
+    AudioSource audioSource;
 
     private void Start()
     {
         if (instance == null)
             instance = this;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public static void KillPlayer(Player player)
@@ -23,8 +28,11 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator RespawnPlayer()
     {
+        audioSource.Play();
         yield return new WaitForSeconds(spawnDelay);
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
-        // TODO add spawn particles
+
+        Transform clone = Instantiate(spawnPrefab, spawnPoint.position, Quaternion.identity);
+        Destroy(clone.gameObject, 3f);
     }
 }

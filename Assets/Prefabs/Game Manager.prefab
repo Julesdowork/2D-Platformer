@@ -100,3 +100,6 @@ MonoBehaviour:
   playerPrefab: {fileID: 4757325726064826, guid: 9325f58f8db2b8f4b8cddd4e1b1e63fd,
     type: 2}
   spawnPoint: {fileID: 4798873287921910}
+  spawnDelay: 2
+  spawnPrefab: {fileID: 4261639232602926, guid: 0a422d0c8b888f24398169e1829c4d7a,
+    type: 2}
