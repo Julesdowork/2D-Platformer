@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour {
     Seeker seeker;
     Rigidbody2D rb;
     int currentWaypoint = 0;        // The waypoint we are currently moving towards
+    bool searchForPlayer = false;
 
     void Start()
     {
@@ -26,7 +27,11 @@ public class EnemyAI : MonoBehaviour {
 
         if (target == null)
         {
-            Debug.LogError("No player found? PANIC!");
+            if (!searchForPlayer)
+            {
+                searchForPlayer = true;
+                StartCoroutine(SearchForPlayer());
+            }
             return;
         }
 
@@ -40,7 +45,11 @@ public class EnemyAI : MonoBehaviour {
     {
         if (target == null)
         {
-            // TODO insert a player search here
+            if (!searchForPlayer)
+            {
+                searchForPlayer = true;
+                StartCoroutine(SearchForPlayer());
+            }
             return;
         }
 
@@ -74,13 +83,34 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
+    IEnumerator SearchForPlayer()
+    {
+        GameObject searchResult = GameObject.FindGameObjectWithTag("Player");
+        if (searchResult == null)
+        {
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(SearchForPlayer());
+        }
+        else
+        {
+            searchForPlayer = false;
+            target = searchResult.transform;
+            StartCoroutine(UpdatePath());
+            yield return false;
+        }
+    }
+
     IEnumerator UpdatePath()
     {
-        //if (target == null)
-        //{
-        //    // TODO insert a player search here
-        //    return;
-        //}
+        if (target == null)
+        {
+            if (!searchForPlayer)
+            {
+                searchForPlayer = true;
+                StartCoroutine(SearchForPlayer());
+            }
+            yield return false;
+        }
 
         // Start a new path to target position, return result to OnPathComplete method
         seeker.StartPath(transform.position, target.position, OnPathComplete);

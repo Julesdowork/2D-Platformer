@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 
     AudioSource audioSource;
 
-    private void Start()
+    void Start()
     {
         if (instance == null)
             instance = this;
@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour {
     {
         Destroy(player.gameObject);
         instance.StartCoroutine(instance.RespawnPlayer());
+    }
+
+    public static void KillEnemy(Enemy enemy)
+    {
+        Destroy(enemy.gameObject);
     }
 
     public IEnumerator RespawnPlayer()

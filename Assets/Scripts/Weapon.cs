@@ -4,7 +4,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
 
     public float fireRate = 0;
-    public float damage = 10f;
+    public int damage = 10;
     public LayerMask hitLayer;
     public Transform bulletTrailPrefab;
     public float effectSpawnRate = 10f;
@@ -56,7 +56,12 @@ public class Weapon : MonoBehaviour {
         if (hit.collider != null)
         {
             //Debug.DrawLine(firePointPos, hit.point, Color.red);
-            //Debug.Log("Fired at " + hit.collider.name + " and did " + damage + " damage.");
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.DamageEnemy(damage);
+                Debug.Log("Fired at " + hit.collider.name + " and did " + damage + " damage.");
+            }
         }
     }
 
