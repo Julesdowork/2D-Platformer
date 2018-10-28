@@ -113,6 +113,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &99533075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1224544831447182, guid: 9325f58f8db2b8f4b8cddd4e1b1e63fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 372634432}
+--- !u!114 &99533083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 99533075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5bb2287c19f58458c0db689f1695fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats:
+    health: 100
+  fallBoundary: -20
 --- !u!1001 &372634432
 Prefab:
   m_ObjectHideFlags: 0
@@ -218,6 +237,7 @@ MonoBehaviour:
   lookAheadFactor: 1.5
   lookAheadReturnSpeed: 0.5
   lookAheadMoveThreshold: 0.1
+  yBounds: -1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1139,6 +1159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2019425352}
   - component: {fileID: 2019425351}
+  - component: {fileID: 2019425353}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1175,3 +1196,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2019425353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019425350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 153fb812d3742324aa27406f9a93a185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
