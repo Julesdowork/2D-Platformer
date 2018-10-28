@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 114201481968439152}
   - component: {fileID: 61229798869276016}
   - component: {fileID: 212965741591866296}
+  - component: {fileID: 114136299934936512}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -303,6 +304,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114136299934936512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1224544831447182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5bb2287c19f58458c0db689f1695fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats:
+    health: 100
+  fallBoundary: -20
 --- !u!114 &114201481968439152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -359,6 +374,11 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 1
+  bulletTrailPrefab: {fileID: 4616406058405376, guid: 7fd3ba1378fcdd640844ee48d008ca3a,
+    type: 2}
+  effectSpawnRate: 10
+  muzzleFlashPrefab: {fileID: 4592585635261528, guid: 9dcbf02e2323d53459041389c8ce07c9,
+    type: 2}
 --- !u!212 &212119725006226468
 SpriteRenderer:
   m_ObjectHideFlags: 1
