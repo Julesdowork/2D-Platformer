@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public class EnemyStats
     {
         public int maxHealth = 100;
+        public int damage = 40;
 
         private int _currentHealth;
         public int currentHealth
@@ -22,6 +23,9 @@ public class Enemy : MonoBehaviour
     }
 
     public EnemyStats stats = new EnemyStats();
+    public GameObject deathFX;
+    public float shakeAmount = 0.1f;
+    public float shakeLength = 0.1f;
 
     [Header("Optional: ")]
     [SerializeField] StatusIndicator statusIndicator;
@@ -32,6 +36,21 @@ public class Enemy : MonoBehaviour
         if (statusIndicator != null)
         {
             statusIndicator.SetHealth(stats.currentHealth, stats.maxHealth);
+        }
+
+        if (deathFX == null)
+        {
+            Debug.LogError("No death particle effect referenced on Enemy.");
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player player = collision.collider.GetComponent<Player>();
+        if (player != null)
+        {
+            player.DamagePlayer(stats.damage);
+            DamageEnemy(999);
         }
     }
 
