@@ -10,10 +10,13 @@ public class Weapon : MonoBehaviour {
     public float effectSpawnRate = 10f;
     public Transform muzzleFlashPrefab;
     public Transform hitPrefab;
+    public float camShakeAmount = 0.05f;     // Handle camera shaking
+    public float camShakeLength = 0.1f;
 
     float timeToFire = 0;
     Transform firePoint;
     float timeToSpawnEffect = 0;
+    CameraShake camShake;
 
     void Awake()
     {
@@ -21,9 +24,18 @@ public class Weapon : MonoBehaviour {
         if (firePoint == null)
             Debug.LogError("No FirePoint? WHAAAAAAT?!");
     }
-	
-	// Update is called once per frame
-	void Update()
+
+    void Start()
+    {
+        camShake = GameManager.instance.GetComponent<CameraShake>();
+        if (camShake == null)
+        {
+            Debug.LogError("No CameraShake component found on GameManager instance!");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
     {
 		if (fireRate == 0)
         {
@@ -108,5 +120,8 @@ public class Weapon : MonoBehaviour {
         float size = Random.Range(0.6f, 0.9f);
         clone.localScale = new Vector3(size, size, size);
         Destroy(clone.gameObject, 0.02f);
+
+        // Shake the camera
+        camShake.Shake(camShakeAmount, camShakeLength);
     }
 }

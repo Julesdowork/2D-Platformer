@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 
     AudioSource audioSource;
 
-    void Start()
+    void Awake()
     {
         if (instance == null)
             instance = this;
