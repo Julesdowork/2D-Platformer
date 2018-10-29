@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Start()
+    void Start()
     {
         if (cameraShake == null)
         {
