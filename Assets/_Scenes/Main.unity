@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 134438196}
   - component: {fileID: 134438195}
   - component: {fileID: 134438194}
+  - component: {fileID: 134438198}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -347,6 +348,36 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 134438192}
   m_CullTransparentMesh: 0
+--- !u!114 &134438198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 134438192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495296769}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &156841919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,6 +1954,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1308350284
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4568408954097964, guid: 60dc092a238183d4ea8fde20b220bdc1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568408954097964, guid: 60dc092a238183d4ea8fde20b220bdc1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568408954097964, guid: 60dc092a238183d4ea8fde20b220bdc1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568408954097964, guid: 60dc092a238183d4ea8fde20b220bdc1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568408954097964, guid: 60dc092a238183d4ea8fde20b220bdc1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568408954097964, guid: 60dc092a238183d4ea8fde20b220bdc1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568408954097964, guid: 60dc092a238183d4ea8fde20b220bdc1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568408954097964, guid: 60dc092a238183d4ea8fde20b220bdc1, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60dc092a238183d4ea8fde20b220bdc1, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &1328964453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4018105248842734, guid: 4b803da0b123e7448817e814c3825268,
@@ -2103,8 +2176,7 @@ Prefab:
       propertyPath: spawnPoints.Array.data[2]
       value: 
       objectReference: {fileID: 1328964453}
-    m_RemovedComponents:
-    - {fileID: 82984281738323140, guid: 163394f1a7483134fa4dffe291ee51e5, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 163394f1a7483134fa4dffe291ee51e5, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1495296767
@@ -2158,6 +2230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1714637cc06c324aa8f3ba80aafd516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseHoverSoundName: ButtonHover
+  buttonPressSoundName: ButtonPress
 --- !u!95 &1495296770
 Animator:
   serializedVersion: 3
@@ -2889,6 +2963,7 @@ GameObject:
   - component: {fileID: 2058828301}
   - component: {fileID: 2058828300}
   - component: {fileID: 2058828299}
+  - component: {fileID: 2058828303}
   m_Layer: 5
   m_Name: RetryButton
   m_TagString: Untagged
@@ -3015,3 +3090,33 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2058828297}
   m_CullTransparentMesh: 0
+--- !u!114 &2058828303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2058828297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495296769}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []

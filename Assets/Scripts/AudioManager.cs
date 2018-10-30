@@ -9,6 +9,7 @@ public class Sound
     [Range(0.5f, 1.5f)] public float pitch = 1f;
     [Range(0, 0.5f)] public float volumeVariance = 0.1f;
     [Range(0, 0.5f)] public float pitchVariance = 0.1f;
+    public bool loop = false;
 
     AudioSource source;
 
@@ -16,6 +17,7 @@ public class Sound
     {
         source = _source;
         source.clip = clip;
+        source.loop = loop;
     }
 
     public void Play()
@@ -23,6 +25,11 @@ public class Sound
         source.volume = volume * (1 + Random.Range(-volumeVariance / 2f, volumeVariance / 2f));
         source.pitch = pitch * (1 + Random.Range(-pitchVariance / 2f, pitchVariance / 2f));
         source.Play();
+    }
+
+    public void Stop()
+    {
+        source.Stop();
     }
 }
 
@@ -32,15 +39,19 @@ public class AudioManager : MonoBehaviour {
 
     [SerializeField] Sound[] sounds;
 
-    private void Awake()
+    void Awake()
     {
         if (instance != null)
         {
-            Debug.LogError("More than one AudioManager was found.");
+            if (instance == this)
+            {
+                Destroy(this.gameObject);
+            }
         }
         else
         {
             instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 
@@ -52,6 +63,8 @@ public class AudioManager : MonoBehaviour {
             go.transform.SetParent(transform);
             sounds[i].SetSource(go.AddComponent<AudioSource>());
         }
+
+        PlaySound("Music");
     }
 
     public void PlaySound(string name)
@@ -61,6 +74,21 @@ public class AudioManager : MonoBehaviour {
             if (sounds[i].name == name)
             {
                 sounds[i].Play();
+                return;
+            }
+        }
+
+        // no sound with name
+        Debug.LogWarning("AudioManager: Sound-" + name + " not found in array.");
+    }
+
+    public void StopSound(string name)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if (sounds[i].name == name)
+            {
+                sounds[i].Stop();
                 return;
             }
         }

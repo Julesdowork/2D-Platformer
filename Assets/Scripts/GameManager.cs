@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour {
     public float spawnDelay = 3.5f;
     public Transform spawnPrefab;
     public CameraShake cameraShake;
-    public string spawnSoundName = "Respawn";
+    public string respawnCountdownSoundName = "RespawnCountdown";
+    public string spawnSoundName = "Spawn";
+    public string gameOverSoundName = "GameOver";
 
     static int _remainingLives;
     
@@ -63,25 +65,33 @@ public class GameManager : MonoBehaviour {
 
     public void EndGame()
     {
+        audioManager.PlaySound(gameOverSoundName);
         Debug.Log("GAME OVER!");
         gameOverUI.SetActive(true);
     }
 
     public IEnumerator RespawnPlayer()
     {
-        audioManager.PlaySound(spawnSoundName);
+        audioManager.PlaySound(respawnCountdownSoundName);
         yield return new WaitForSeconds(spawnDelay);
-        Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
+        audioManager.PlaySound(spawnSoundName);
+        Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
         Transform clone = Instantiate(spawnPrefab, spawnPoint.position, Quaternion.identity);
         Destroy(clone.gameObject, 3f);
     }
 
     public void _KillEnemy(Enemy enemy)
     {
+        // Add particles
         GameObject clone = Instantiate(enemy.deathFX, enemy.transform.position, Quaternion.identity);
         Destroy(clone, 3f);
+
+        // Do camera shake
         cameraShake.Shake(enemy.shakeAmount, enemy.shakeLength);
         Destroy(enemy.gameObject);
+
+        // Let's play a sound
+        audioManager.PlaySound(enemy.deathSoundName);
     }
 }
