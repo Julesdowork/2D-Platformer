@@ -1,37 +1,22 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
+[RequireComponent(typeof(PlatformerCharacter2D))]
 public class Player : MonoBehaviour {
 
-    [System.Serializable]
-	public class PlayerStats
-    {
-        public int maxHealth = 100;
-
-        private int _currentHealth;
-        public int currentHealth
-        {
-            get { return _currentHealth; }
-            set { _currentHealth = Mathf.Clamp(value, 0, maxHealth); }
-        }
-
-        public void Init()
-        {
-            currentHealth = maxHealth;
-        }
-    }
-
-    public PlayerStats stats = new PlayerStats();
     public int fallBoundary = -20;
     public string deathSoundName = "PlayerDeath";
     public string damageSoundName = "Grunt";
 
-    [SerializeField] private StatusIndicator statusIndicator;
-    AudioManager audioManager;
+    [SerializeField] StatusIndicator statusIndicator;
+    private AudioManager audioManager;
+    private PlayerStats stats;
 
     void Start()
     {
-        stats.Init();
+        stats = PlayerStats.instance;
+        stats.currentHealth = stats.maxHealth;
 
         if (statusIndicator == null)
         {
@@ -41,11 +26,16 @@ public class Player : MonoBehaviour {
         {
             statusIndicator.SetHealth(stats.currentHealth, stats.maxHealth);
         }
+
+        GameManager.instance.OnToggleUpgradeMenu += OnUpgradeMenuToggle;
+
         audioManager = AudioManager.instance;
         if (audioManager == null)
         {
             Debug.LogError("No Audio Manager found in scene.");
         }
+
+        InvokeRepeating("RegenHealth", 1f / stats.healthRegenRate, 1f / stats.healthRegenRate);
     }
 
     void Update()
@@ -54,6 +44,11 @@ public class Player : MonoBehaviour {
         {
             DamagePlayer(999);
         }
+    }
+
+    void OnDestroy()
+    {
+        GameManager.instance.OnToggleUpgradeMenu -= OnUpgradeMenuToggle;
     }
 
     public void DamagePlayer(int damage)
@@ -78,5 +73,22 @@ public class Player : MonoBehaviour {
             Debug.Log("No status indicator referenced on Player.");
         else
             statusIndicator.SetHealth(stats.currentHealth, stats.maxHealth);
+    }
+
+    void OnUpgradeMenuToggle(bool active)
+    {
+        // Handle what happens when Upgrade Menu is toggled
+        GetComponent<Platformer2DUserControl>().enabled = !active;
+        Weapon weapon = GetComponentInChildren<Weapon>();
+        if (weapon != null)
+        {
+            weapon.enabled = !active;
+        }
+    }
+
+    void RegenHealth()
+    {
+        stats.currentHealth += 1;
+        statusIndicator.SetHealth(stats.currentHealth, stats.maxHealth);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyAI))]
 public class Enemy : MonoBehaviour
 {
     [System.Serializable]
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
     public float shakeAmount = 0.1f;
     public float shakeLength = 0.1f;
     public string deathSoundName = "Explosion";
+    public int moneyDrop = 10;
 
     [Header("Optional: ")]
     [SerializeField] StatusIndicator statusIndicator;
@@ -38,6 +40,8 @@ public class Enemy : MonoBehaviour
         {
             statusIndicator.SetHealth(stats.currentHealth, stats.maxHealth);
         }
+
+        GameManager.instance.OnToggleUpgradeMenu += OnUpgradeMenuToggle;
 
         if (deathFX == null)
         {
@@ -55,6 +59,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        GameManager.instance.OnToggleUpgradeMenu -= OnUpgradeMenuToggle;
+    }
+
     public void DamageEnemy(int damage)
     {
         stats.currentHealth -= damage;
@@ -67,5 +76,11 @@ public class Enemy : MonoBehaviour
         {
             statusIndicator.SetHealth(stats.currentHealth, stats.maxHealth);
         }
+    }
+
+    void OnUpgradeMenuToggle(bool active)
+    {
+        // Handle what happens when Upgrade Menu is toggled
+        GetComponent<EnemyAI>().enabled = !active;
     }
 }

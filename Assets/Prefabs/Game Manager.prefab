@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114547368429606544}
   - component: {fileID: 114579593534968790}
   - component: {fileID: 114793662686789628}
+  - component: {fileID: 114689274597093662}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -108,8 +109,12 @@ MonoBehaviour:
   cameraShake: {fileID: 114579593534968790}
   respawnCountdownSoundName: RespawnCountdown
   spawnSoundName: Spawn
+  gameOverSoundName: GameOver
   gameOverUI: {fileID: 0}
   maxLives: 3
+  upgradeMenu: {fileID: 0}
+  startingMoney: 100
+  waveSpawner: {fileID: 114793662686789628}
 --- !u!114 &114579593534968790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,6 +127,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
+--- !u!114 &114689274597093662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1167735400606050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4badcadd2dced4fa6f691e07c7f016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthRegenRate: 2
 --- !u!114 &114793662686789628
 MonoBehaviour:
   m_ObjectHideFlags: 1
