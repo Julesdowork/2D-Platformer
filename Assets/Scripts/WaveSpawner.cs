@@ -13,7 +13,7 @@ public class Wave
 public class WaveSpawner : MonoBehaviour {
 
     public Wave[] waves;
-    public float timeBetweenWaves = 5f;
+    public float timeBetweenWaves = 3f;
     public enum SpawnState { Spawning, Waiting, Counting };
     public Transform[] spawnPoints;
     public SpawnState State

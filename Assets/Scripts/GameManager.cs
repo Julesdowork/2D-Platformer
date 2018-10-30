@@ -4,6 +4,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+    public static int RemainingLives
+    {
+        get { return _remainingLives; }
+    }
 
     public Transform playerPrefab;
     public Transform spawnPoint;
@@ -11,7 +15,10 @@ public class GameManager : MonoBehaviour {
     public Transform spawnPrefab;
     public CameraShake cameraShake;
 
+    static int _remainingLives = 3;
+
     AudioSource audioSource;
+    [SerializeField] GameObject gameOverUI;
 
     void Awake()
     {
@@ -32,12 +39,26 @@ public class GameManager : MonoBehaviour {
     public static void KillPlayer(Player player)
     {
         Destroy(player.gameObject);
-        instance.StartCoroutine(instance.RespawnPlayer());
+        _remainingLives--;
+        if (_remainingLives <= 0)
+        {
+            instance.EndGame();
+        }
+        else
+        {
+            instance.StartCoroutine(instance.RespawnPlayer());
+        }
     }
 
     public static void KillEnemy(Enemy enemy)
     {
         instance._KillEnemy(enemy);
+    }
+
+    public void EndGame()
+    {
+        Debug.Log("GAME OVER!");
+        gameOverUI.SetActive(true);
     }
 
     public IEnumerator RespawnPlayer()
