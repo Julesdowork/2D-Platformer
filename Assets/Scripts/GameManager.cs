@@ -15,10 +15,11 @@ public class GameManager : MonoBehaviour {
     public Transform spawnPrefab;
     public CameraShake cameraShake;
 
-    static int _remainingLives = 3;
+    static int _remainingLives;
 
     AudioSource audioSource;
     [SerializeField] GameObject gameOverUI;
+    [SerializeField] int maxLives = 3;
 
     void Awake()
     {
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
         {
             Debug.LogError("No CameraShake referenced in Game Manager.");
         }
+        _remainingLives = maxLives;
     }
 
     public static void KillPlayer(Player player)

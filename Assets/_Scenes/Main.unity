@@ -2068,6 +2068,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114547368429606544, guid: 163394f1a7483134fa4dffe291ee51e5,
+        type: 2}
+      propertyPath: gameOverUI
+      value: 
+      objectReference: {fileID: 1495296767}
     - target: {fileID: 114391911490666762, guid: 163394f1a7483134fa4dffe291ee51e5,
         type: 2}
       propertyPath: backgrounds.Array.data[0]
@@ -2083,15 +2088,21 @@ Prefab:
       propertyPath: backgrounds.Array.data[2]
       value: 
       objectReference: {fileID: 1412675520}
-    - target: {fileID: 1648525682777142, guid: 163394f1a7483134fa4dffe291ee51e5, type: 2}
-      propertyPath: m_Name
-      value: PlayerSpawnPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 114547368429606544, guid: 163394f1a7483134fa4dffe291ee51e5,
+    - target: {fileID: 114793662686789628, guid: 163394f1a7483134fa4dffe291ee51e5,
         type: 2}
-      propertyPath: gameOverUI
+      propertyPath: spawnPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 1495296767}
+      objectReference: {fileID: 1424462742}
+    - target: {fileID: 114793662686789628, guid: 163394f1a7483134fa4dffe291ee51e5,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1428641899}
+    - target: {fileID: 114793662686789628, guid: 163394f1a7483134fa4dffe291ee51e5,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1328964453}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 163394f1a7483134fa4dffe291ee51e5, type: 2}
   m_IsPrefabAsset: 0
@@ -2757,40 +2768,12 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!1 &2019425350 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1167735400606050, guid: 163394f1a7483134fa4dffe291ee51e5,
+--- !u!114 &2019425356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114793662686789628, guid: 163394f1a7483134fa4dffe291ee51e5,
     type: 2}
   m_PrefabInternal: {fileID: 1445061677}
---- !u!114 &2019425356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2019425350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d09bafb3a993e14185b612b87bf8584, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waves:
-  - name: Alien Invasion
-    enemy: {fileID: 4786669270372264, guid: 4bd797176def8b94fbd0f365bcfd4949, type: 2}
-    count: 2
-    rate: 1
-  - name: Alien Invasion 2.0
-    enemy: {fileID: 4786669270372264, guid: 4bd797176def8b94fbd0f365bcfd4949, type: 2}
-    count: 3
-    rate: 1.5
-  - name: Run While You Can
-    enemy: {fileID: 4786669270372264, guid: 4bd797176def8b94fbd0f365bcfd4949, type: 2}
-    count: 5
-    rate: 2
-  timeBetweenWaves: 3
-  spawnPoints:
-  - {fileID: 1424462742}
-  - {fileID: 1428641899}
-  - {fileID: 1328964453}
 --- !u!1 &2019797313
 GameObject:
   m_ObjectHideFlags: 0
