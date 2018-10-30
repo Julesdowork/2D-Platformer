@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 82984281738323140}
   - component: {fileID: 114579593534968790}
   - component: {fileID: 114793662686789628}
+  - component: {fileID: 114835608243206954}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -202,6 +203,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 4261639232602926, guid: 0a422d0c8b888f24398169e1829c4d7a,
     type: 2}
   cameraShake: {fileID: 114579593534968790}
+  spawnSoundName: Respawn
   gameOverUI: {fileID: 0}
   maxLives: 3
 --- !u!114 &114579593534968790
@@ -245,3 +247,21 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &114835608243206954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1167735400606050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447f02bb60896624bb500cf9f28b6da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Respawn
+    clip: {fileID: 8300000, guid: d304eace11065dd4692dedeea31749ea, type: 3}
+    volume: 0.701
+    pitch: 1.012
+    volumeVariance: 0
+    pitchVariance: 0

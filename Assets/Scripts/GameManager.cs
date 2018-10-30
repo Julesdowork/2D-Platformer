@@ -14,19 +14,18 @@ public class GameManager : MonoBehaviour {
     public float spawnDelay = 3.5f;
     public Transform spawnPrefab;
     public CameraShake cameraShake;
+    public string spawnSoundName = "Respawn";
 
     static int _remainingLives;
-
-    AudioSource audioSource;
+    
     [SerializeField] GameObject gameOverUI;
     [SerializeField] int maxLives = 3;
+    AudioManager audioManager;
 
     void Awake()
     {
         if (instance == null)
             instance = this;
-
-        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -36,6 +35,11 @@ public class GameManager : MonoBehaviour {
             Debug.LogError("No CameraShake referenced in Game Manager.");
         }
         _remainingLives = maxLives;
+        audioManager = AudioManager.instance;
+        if (audioManager == null)
+        {
+            Debug.LogError("No AudioManager found in the scene.");
+        }
     }
 
     public static void KillPlayer(Player player)
@@ -65,7 +69,7 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator RespawnPlayer()
     {
-        audioSource.Play();
+        audioManager.PlaySound(spawnSoundName);
         yield return new WaitForSeconds(spawnDelay);
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 

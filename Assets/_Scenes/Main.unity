@@ -2103,7 +2103,8 @@ Prefab:
       propertyPath: spawnPoints.Array.data[2]
       value: 
       objectReference: {fileID: 1328964453}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 82984281738323140, guid: 163394f1a7483134fa4dffe291ee51e5, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 163394f1a7483134fa4dffe291ee51e5, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1495296767
