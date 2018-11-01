@@ -248,6 +248,8 @@ MonoBehaviour:
   deathFX: {fileID: 1951074407632694, guid: c2fecb107bac3184d80087558516c498, type: 2}
   shakeAmount: 0.1
   shakeLength: 0.1
+  deathSoundName: Explosion
+  moneyDrop: 10
   statusIndicator: {fileID: 114794997931224912}
 --- !u!114 &114794997931224912
 MonoBehaviour:
@@ -260,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1610273fd3bf10a48a6e59ea9dbe8b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarRect: {fileID: 224408412294991630}
+  healthBarFill: {fileID: 224408412294991630}
   healthText: {fileID: 114387848173303184}
 --- !u!114 &114856226851370042
 MonoBehaviour:

@@ -62,7 +62,7 @@ public class EnemyAI : MonoBehaviour {
             if (pathIsEnded)
                 return;
 
-            Debug.Log("End of path reached.");
+            //Debug.Log("End of path reached.");
             pathIsEnded = true;
             return;
         }
@@ -113,7 +113,8 @@ public class EnemyAI : MonoBehaviour {
         }
 
         // Start a new path to target position, return result to OnPathComplete method
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
+        if (target != null)
+            seeker.StartPath(transform.position, target.position, OnPathComplete);
 
         yield return new WaitForSeconds(1 / updateRate);
         StartCoroutine(UpdatePath());
@@ -121,7 +122,7 @@ public class EnemyAI : MonoBehaviour {
 
     public void OnPathComplete(Path p)
     {
-        Debug.Log("We got a path. Did it have an error? " + p.error);
+        //Debug.Log("We got a path. Did it have an error? " + p.error);
         if (!p.error)
         {
             path = p;

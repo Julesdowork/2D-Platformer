@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject upgradeMenu;
     [SerializeField] int startingMoney;
     [SerializeField] WaveSpawner waveSpawner;
+    bool isGameOver;
 
     void Awake()
     {
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour {
             Debug.LogError("No CameraShake referenced in Game Manager.");
         }
 
+        isGameOver = false;
         _remainingLives = maxLives;
         money = startingMoney;
 
@@ -54,9 +56,9 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void Update()
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.U) && !isGameOver)
         {
             ToggleUpgradeMenu();
         }
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour {
     public void EndGame()
     {
         audioManager.PlaySound(gameOverSoundName);
-        Debug.Log("GAME OVER!");
+        isGameOver = true;
         gameOverUI.SetActive(true);
     }
 

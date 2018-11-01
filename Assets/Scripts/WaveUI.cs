@@ -55,7 +55,7 @@ public class WaveUI : MonoBehaviour {
         {
             waveAnimator.SetBool("WaveIncoming", false);
             waveAnimator.SetBool("WaveCountdown", true);
-            Debug.Log("Counting down...");
+            //Debug.Log("Counting down...");
         }
         waveCountdownText.text = ((int)spawner.WaveCountdown).ToString();
     }
@@ -67,7 +67,7 @@ public class WaveUI : MonoBehaviour {
             waveAnimator.SetBool("WaveCountdown", false);
             waveAnimator.SetBool("WaveIncoming", true);
             waveNumberText.text = spawner.NextWave.ToString();
-            Debug.Log("Spawning...");
+            //Debug.Log("Spawning...");
         }
     }
 }
